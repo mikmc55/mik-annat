@@ -1,0 +1,7 @@
+cache.db*
+annatar.db*
+*.env
+.docker
+dist
+RELEASE_NOTES.txt
+.coverage
