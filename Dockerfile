@@ -55,7 +55,7 @@ COPY ./templates /app/templates
 COPY run.py /app/run.py
 
 # Set build version as an environment variable
-ARG BUILD_VERSION=1.0.0
+ARG BUILD_VERSION=0.8.8
 ENV BUILD_VERSION=${BUILD_VERSION}
 
 # Set the entrypoint for the container
