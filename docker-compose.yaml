@@ -6,7 +6,7 @@ volumes:
 
 services:
   annatar:
-    image:  docker.io/library/annatar:lates
+    image: docker.io/library/annatar:latest
     ports:
       - "8000:8000"
     depends_on:
