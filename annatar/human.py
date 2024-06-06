@@ -4,13 +4,11 @@ import structlog
 
 log = structlog.get_logger(__name__)
 
-PRIORITY_WORDS: list[str] = [r"\b(4K|2160p)\b", r"\b1080p\b", r"\b720p\b"]
+PRIORITY_WORDS: list[str] = [r"\b(4K|2160p)\b", r"\b1080p\b"]
 QUALITIES: dict[str, str] = {
     "4K": r"\b(4K|2160p)\b",
     "1080p": r"\b1080p\b",
-    "720p": r"\b720p\b",
-    "480p": r"\b480p\b",
-}
+ }
 VIDEO_EXTENSIONS = [
     "3g2",
     "3gp",
