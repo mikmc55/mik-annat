@@ -34,7 +34,7 @@ FROM python:3.11-slim as final
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV DB_PATH=/app/data/annatar.db
-ENV NUM_WORKERS=4
+ENV NUM_WORKERS=6
 ENV CONFIG_FILE=/config/annatar.yaml
 
 VOLUME /app/data
