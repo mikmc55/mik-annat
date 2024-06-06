@@ -17,11 +17,14 @@ class Category(BaseModel):
             return MOVIES
         if name == "series":
             return SERIES
+        if name == "other":
+            return OTHER    
         return None
 
 
 MOVIES = Category(name="movie", id=2000)
 SERIES = Category(name="series", id=5000)
+OTHER = Category(name="other", id=8000)
 
 
 class SearchQuery(BaseModel):
