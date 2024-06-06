@@ -56,7 +56,7 @@ async def configure(request: Request, config: UserConfig) -> HTMLResponse:
         user_config=config,
         available_indexers=indexers,
         available_debrid_providers=list_providers(),
-        available_resolutions=["4K", "QHD", "1080p", "720p", "480p"],
+        available_resolutions=["4K", "QHD", "1080p"],
     )
     return templates.TemplateResponse(
         request=request,
