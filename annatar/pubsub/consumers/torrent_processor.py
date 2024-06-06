@@ -20,7 +20,7 @@ TORRENT_PROCESSOR_MAX_QUEUE_DEPTH = int(os.getenv("TORRENT_PROCESSOR_MAX_QUEUE_D
 
 class TorrentProcessor:
     @staticmethod
-    async def run(num_workers: int = 1):
+    async def run(num_workers: int = 2):
         queue: asyncio.Queue[TorrentSearchResult] = asyncio.Queue(
             maxsize=TORRENT_PROCESSOR_MAX_QUEUE_DEPTH
         )
@@ -70,7 +70,8 @@ async def process_message(result: TorrentSearchResult):
         await process_movie(torrent, criteria, ttl)
     else:
         await process_show(torrent, criteria, ttl)
-
+    else:
+        await process_show(torrent, criteria, ttl)
 
 async def process_movie(torrent: Torrent, criteria: TorrentSearchCriteria, ttl: timedelta):
     score = torrent.match_score(title=torrent.title, year=criteria.year)
@@ -114,7 +115,16 @@ async def process_show(torrent: Torrent, criteria: TorrentSearchCriteria, ttl: t
                     season=season,
                     episode=episode,
                 )
-
+async def process_other(torrent: Torrent, criteria: TorrentSearchCriteria, ttl: timedelta):
+    score = torrent.match_score(title=torrent.title, year=criteria.year)
+    if score > 0:
+        await odm.add_torrent(
+            info_hash=torrent.info_hash,
+            title=torrent.raw_title,
+            imdb=criteria.imdb,
+            score=score,
+            ttl=ttl,
+        )
 
 async def map_search_result(result: TorrentSearchResult) -> Torrent | None:
     info_hash: str | None = (
