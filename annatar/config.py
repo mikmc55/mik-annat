@@ -9,22 +9,22 @@ log = structlog.get_logger()
 APP_ID = os.getenv("APP_ID", "community.annatar.addon.stremio")
 APP_NAME = os.getenv("APP_NAME", "Annatar")
 ENV = os.getenv("ENV", "dev")
-VERSION = os.getenv("BUILD_VERSION") or "0.0.1"
+VERSION = os.getenv("BUILD_VERSION") or "1.1.1"
 
 
 class UserConfig(BaseModel):
     debrid_service: str
     debrid_api_key: str
     indexers: list[str]
-    resolutions: list[str] = ["4K", "QHD", "1080p", "720p", "480p"]
-    max_results: int = 5
+    resolutions: list[str] = ["4K", "QHD", "1080p"]
+    max_results: int = 10
 
     @staticmethod
     def defaults() -> "UserConfig":
         return UserConfig(
             debrid_service="",
             debrid_api_key="",
-            max_results=5,
+            max_results=10,
             indexers=[],
         )
 
