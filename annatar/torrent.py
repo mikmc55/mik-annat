@@ -54,7 +54,7 @@ def get_resolution(score: int) -> str:
 class Category(str, Enum):
     Movie = "movie"
     Series = "series"
-
+    Other = "other"
 
 class TorrentMeta(BaseModel):
     title: str
